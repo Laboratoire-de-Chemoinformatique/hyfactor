@@ -1,0 +1,18 @@
+name: hyfactor_env
+channels:
+  - defaults
+dependencies:
+  - graphviz
+  - pip=21.2.4
+  - pydot
+  - pydotplus
+  - python=3.9.7
+  - pyyaml
+  - tqdm
+  - yaml
+  - pip:
+    - adabelief-tf==0.2.1
+    - cgrtools==4.1.33
+    - numpy==1.19.5
+    - py-mini-racer==0.6.0
+    - tensorflow==2.6.0

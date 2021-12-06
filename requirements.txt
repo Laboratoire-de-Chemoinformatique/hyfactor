@@ -1,0 +1,10 @@
+# external requirements
+CGRtools==4.1.33
+tensorflow>=2.4.0
+adabelief_tf>=0.1.0
+PyYAML
+numpy
+tqdm
+pydot
+pydotplus
+graphviz
