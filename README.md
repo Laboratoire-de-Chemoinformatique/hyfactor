@@ -78,7 +78,7 @@ Here you can simply import the HYFactor package in folowing way:
     with open('YOUR_CONFIG_FILE.yaml', 'r') as file:
         config = yaml.load(file, Loader=yaml.SafeLoader)
 
-    run_ae(config)
+    task_preparer(config)
 
 ## Contributing
 
