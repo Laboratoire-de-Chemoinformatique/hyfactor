@@ -1,0 +1,80 @@
+Parameters:
+
+    # Maximal bond order. Used only in ReFactor.
+    max_bond_order: 3
+    
+    # Maximal number of atoms in a molecule. Should be +1 more, than in the given datasets.
+    max_atoms: 38
+    
+    # Length of atomic representation vector
+    atomic_representation_vector_length: 512
+    
+    # Length of molecule representation vector
+    molecule_representation_vector_length: 512
+    
+    # Batch size
+    batch: 256
+    
+    # Number of epochs
+    n_epoch: 100
+    
+    # Learning rate
+    learning_rate: 0.001
+    
+    # Task: train; evaluate; encode; decode; reconstruct.
+    task: train
+
+    # Which GPU or GPUs on which model will train. If more than 1 will be present, the architecture will use
+    # a distributed training. To specify more that 1 number of GPU use list of numbers, for example [0, 1]
+    # For details see the page tensorflow.org/tutorials/distribute/keras
+    GPUs: 0
+
+    # Which model to use. "refactor" will give ReFactor AE, 'hyfactor' will give HYFactor
+    model: hyfactor
+    
+    # Which scheduler to use. "exp" is exponential scheduler, "cos" is cosinus scheduler. 
+    # If not specified, no scheduler will be used
+    scheduler: exp
+    
+    # Used in encode and decode task. Specifies if tasks should be done in chunks.
+    chunks: 0
+
+
+Model_files:
+    
+    # Path to model's weights. If not specified, model without weights would be build. 
+    # Arbitary in all tasks, except training.
+    input_model_file: weights/zinc_model
+    
+    # Path to save model's weights. Arbitrary in training task, otherwise ignored.
+    output_model_file: weights/zinc_model_new
+    
+    # Path to prepared pickle of tuple of atom types, optional. If file doesn't exist, 
+    # tool automatically will create a new one and will save to the specified path.
+    prepared_atoms_types: tmp/zinc_atom_types.pickle
+    
+    # Way to log file, optional.
+    log: logs/zinc_model
+    
+    # Path and file name to save picture of AutoEncoder graph, optional.
+    plot_file: pics/zinc_model.png
+    
+    # Path and file name to save AutoEncoder's summary, optional.
+    summary_file: summary/zinc_model
+
+
+Files:
+    # SDF file used to train the model or to be encoded.
+    # Also, it might be a SVM file containing latent vectors that have to be decoded.
+    input_data_file: zinc_dataset_train.sdf
+    # input_data_file: zinc_latent_vectors.svm
+    
+    # Path to validation file. Arbitary in training mode, otherwise ignored.
+    validation_file: zinc_dataset_val.sdf
+    
+    # Path to validation file. Optional in training mode, otherwise ignored.
+    test_file: zinc_dataset_test.sdf
+    
+    # Path to preprocessed file. 
+    preprocessed_tmp_file: tmp/zinc_dataset
+    

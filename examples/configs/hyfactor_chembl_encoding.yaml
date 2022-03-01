@@ -1,0 +1,23 @@
+Parameters:
+    max_bond_order: 3
+    max_atoms: 51
+    atomic_representation_vector_length: 1024
+    molecule_representation_vector_length: 1024
+    batch: 256
+    n_epoch: 1
+    learning_rate: 0.0008
+    task: encode
+    GPUs: 0
+    model: hyfactor
+    scheduler: exp
+    chunks: 7
+
+Model_files:
+    input_model_file: weights/chembl_hyfactor
+    prepared_atoms_types: tmp/chembl_atom_types.pickle
+    
+Data_files:
+    input_data_file: сhembl.sdf
+    output_data_file: сhembl_latent_vectors.svm
+    preprocessed_tmp_file:  tmp/chembl_hyfactor
+    
