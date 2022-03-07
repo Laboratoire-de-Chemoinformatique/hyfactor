@@ -21,7 +21,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="hyfactor",
-    version="0.1.0",
+    version="0.2.0",
     packages=['hyfactor'],
     description="Hydrogen-count labeled graph-based AutoEncoder",
     author="Laboratoire de Chemoinformatique, Laboratory of chemoinformatics and molecular modeling",

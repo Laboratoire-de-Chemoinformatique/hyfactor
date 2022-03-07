@@ -42,6 +42,11 @@ First, download the repository on your machine. Then, create conda enviroment wi
     
     conda env create -f enviroment.yml
 
+The enviroment file is made for use on GPU with CUDA version = 11.3. 
+If you have different versions of drivers or want to use a CPU version,
+please modify this file before the installation. For additional support, please,
+visit the tensorflow documentation page. 
+
 When your enviroment is ready, activate it and execute command to install the architecture:
 
     python3 setup.py install

@@ -30,18 +30,16 @@ specify parameters or paths to files.
   For details see the page tensorflow.org/tutorials/distribute/keras;
 * `model` - Which model to use. 
   `refactor` will give ReFactor AE, 
-  `hyfactor` will give HYFactor;
+  `hyfactor` will give HyFactor;
 * `scheduler` -  Which scheduler to use. 
   `exp` is exponential scheduler, `cos` is cosinus scheduler. If not specified, 
   no scheduler will be used;
-* `cos_min_learning_rate` - Parameter for `cos` scheduler. 
-  If not specified, standard one (`1e-6`) would be used;
-* `exp_coef` - Parameter for `exp` scheduler. 
-  If not specified, standard one (`-0.05`) would be used;
-* `exp_coef` - Parameter for `exp` scheduler. 
-  If not specified, standard one (`4`) would be used;
 * `chunks` - Specifies if tasks should be done in chunks.
-  Used in encode and decode task. 
+  Used in encode and decode task, optional;
+* `use_mixed_precision` - Specifies if [mixed precision](https://www.tensorflow.org/guide/mixed_precision) 
+should be applied, default False;
+* `hyf_rec_processes` - How many processes will be used for decoding of molecules
+for the HyFactor architecture, default 1.
   
 ## Model_files
 * `input_model_file` - Path to model's weights. 

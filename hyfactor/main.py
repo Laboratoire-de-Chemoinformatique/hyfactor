@@ -33,6 +33,7 @@ def task_preparer(config):
     check_configs(config)
 
     if config['use_mixed_precision']:
+        print('Mixed precision applied')
         mixed_precision.set_global_policy('mixed_float16')
 
     atom_types = extract_atom_types(config['idf'], config['atom_types'])
