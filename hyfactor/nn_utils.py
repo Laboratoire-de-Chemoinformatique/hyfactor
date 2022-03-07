@@ -102,8 +102,8 @@ def config_names_converter(config: dict) -> dict:
             else:
                 new_config[name] = value
 
-    for k in ['vae', 'vectorized_atoms', 'tl_features', 'plot', 'sum', 'chunks',
-              'odf', 'imf', 'val', 'test', 'tmp', 'prop_vec']:
+    for k in ['plot', 'sum', 'chunks', 'odf', 'imf', 'val',
+              'test', 'tmp', 'GPUs', 'hyf_rec_processes', 'use_mixed_precision']:
         try:
             _ = new_config[k]
         except (ValueError, KeyError):
@@ -390,8 +390,9 @@ def load_ae(config):
             model = choose_model(config)
 
     else:
-        tf.config.set_visible_devices(physical_devices[config['GPUs']], 'GPU')
-        tf.config.experimental.set_memory_growth(physical_devices[config['GPUs']], enable=True)
+        if physical_devices and config['GPUs'] is not None:
+            tf.config.set_visible_devices(physical_devices[config['GPUs']], 'GPU')
+            tf.config.experimental.set_memory_growth(physical_devices[config['GPUs']], enable=True)
         model = choose_model(config)
 
     return model

@@ -10,6 +10,7 @@ Parameters:
     GPUs: 0
     model: refactor
     scheduler: exp
+    use_mixed_precision: True
 
 Model_files:
     output_model_file: weights/chembl_refactor
