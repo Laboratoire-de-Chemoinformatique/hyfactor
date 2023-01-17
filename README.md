@@ -1,20 +1,24 @@
 # HyFactor
 
-Graph-based architectures are becoming increasingly popular as a tool for structure generation. 
-Here, we introduce a novel open-source architecture HyFactor which is inspired by previously 
-reported DEFactor architecture and based on hydrogen labeled graphs. 
-Since the original DEFactor code was not available, 
-its updated implementation (ReFactor) was prepared 
-in this work for benchmarking purposes.
+HyFactor is an open-source architecture for structure generation using graph-based approaches.
+It is based on the new type of molecular graph - Hydrogen-count Labelled Graph (HLG).
+This graph, similar to the InChI linear notation, considers the number 
+of hydrogens attached to the heavy atoms instead of the bond types.
+Additionally, with HyFactor we add ReFactor architecture, which is based molecular graph-based 
+architecture with defactorization procedure adopted from the reported DEFactor architecture.
 
-__For more details please refer to the [paper](https://chemrxiv.org/engage/chemrxiv/article-details/61aa38576d4e8f3bdba8aead)__
+This repository includes official implementations of HyFactor, ReFactor and 
+functions for translation molecular graph to HLG and back.
+
+__For more details please refer to the [paper](https://pubs.acs.org/doi/10.1021/acs.jcim.2c00744)__
 
 If you are using this repository in your paper, please cite us as:
 
 ```
-Akhmetshin T, Lin A, Mazitov D, Ziaikin E, Madzhidov T, Varnek A (2021) 
-HyFactor: Hydrogen-count labelled graph-based defactorization Autoencoder. 
-ChemRxiv. doi: 10.26434/chemrxiv-2021-18x0d
+HyFactor: A Novel Open-Source, Graph-Based Architecture for Chemical Structure Generation
+Tagir Akhmetshin, Arkadii Lin, Daniyar Mazitov, Yuliana Zabolotna, Evgenii Ziaikin, Timur Madzhidov, and Alexandre Varnek
+Journal of Chemical Information and Modeling 2022 62 (15), 3524-3534
+DOI: 10.1021/acs.jcim.2c00744
 ```
 
 ## Data
@@ -84,6 +88,23 @@ Here you can simply import the HYFactor package in folowing way:
         config = yaml.load(file, Loader=yaml.SafeLoader)
 
     task_preparer(config)
+
+### HLG to molecular graph conversion
+
+The code for conversion of the HLG to molecular graph is implemented in 
+function `HYFactor.nn_utils.reconstruction_hyfactor`. 
+
+Here is a custom example of HLG conversion:
+
+    from HYFactor.nn_utils import recompile_rules
+    from HYFactor.mol_utils import reconstruct_molecule_hyfactor
+
+    atoms = [...]  # list of atoms indices according to tuple atom_types
+    hydrogens = [...]  # list of hydrogens attached to heavy atoms from 0 to 4
+    adjs = [[...]]  # list of lists or binary matrix of connectivity between atoms
+    
+    recompiled_rules = recompile_rules(atom_types)
+    molecule = reconstruct_molecule_hyfactor(atoms, hydrogens, adjs, atom_types, recompiled_rules)
 
 ## Contributing
 
